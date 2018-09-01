@@ -12,4 +12,9 @@ public class Pixel{
 		this.y = y;
 		color = Color.WHITE;
 	}
+
+	public void getColorSpace() {
+		// TODO Auto-generated method stub
+		
+	}
 }

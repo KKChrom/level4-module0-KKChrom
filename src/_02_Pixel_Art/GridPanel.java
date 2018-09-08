@@ -3,10 +3,12 @@ package _02_Pixel_Art;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-public class GridPanel extends JPanel{
+public class GridPanel extends JPanel implements MouseListener{
 
 	private static final long serialVersionUID = 1L;
 	private int windowWidth;
@@ -15,6 +17,7 @@ public class GridPanel extends JPanel{
 	private int pixelHeight;
 	private int rows;
 	private int cols;
+	private boolean mouseC;
 	
 	//1. Create a 2D array of pixels. Do not initialize it yet.
 	Pixel[][] p;
@@ -49,11 +52,15 @@ public class GridPanel extends JPanel{
 	}
 	
 	public void clickPixel(int mouseX, int mouseY) {
+		addMouseListener(this);
 		//5. Use the mouseX and mouseY variables to change the color
 		//   of the pixel that was clicked. *HINT* Use the pixel's dimensions.
-		if(mouseX == this.pixelHeight && mouseY == this.pixelWidth)
+		if(mouseX == this.pixelWidth && mouseY == this.pixelHeight)
 		{
-			color = Color.WHITE;
+			if(mouseC)
+			{
+				p[mouseX][mouseY].color = color;
+			}
 		}
 	}
 	
@@ -65,10 +72,41 @@ public class GridPanel extends JPanel{
 		for(int i = 0; i <	p.length; i++) {
 			for(int j = 0; j < p[i].length; j++) {
 				 p[i][j].getColorSpace(); 
-				 p[i][j].color();
-				 drawRect();
+				 // p[i][j].
+				 g.setColor(p[i][j].color);
+				g.drawRect(i*pixelWidth,j*pixelHeight,pixelWidth,pixelHeight);
 			}
 		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		 mouseC = true;
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 }

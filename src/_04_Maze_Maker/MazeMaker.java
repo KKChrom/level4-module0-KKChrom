@@ -9,7 +9,7 @@ public class MazeMaker{
 	
 	private static int width;
 	private static int height;
-	
+	private static int randomcell;
 	private static Maze maze;
 	
 	private static Random randGen = new Random();
@@ -44,47 +44,89 @@ public class MazeMaker{
 		Cell nTwo = new Cell(x,y+1);
 		Cell nThree = new Cell(x-1,y);
 		Cell nFour = new Cell(x+1,y);
-		if(nOne.hasBeenVisited() == false)
+		int gate = 1;
+		if(gate == 1)
 		{
-			uncheckedCells.push(nOne);
-		}
-		if(nTwo.hasBeenVisited() == false)
-		{
-			uncheckedCells.push(nTwo);
-		}
-		if(nThree.hasBeenVisited() == false)
-		{
-			uncheckedCells.push(nThree);
-		}
-		if(nFour.hasBeenVisited() == false)
-		{
-			uncheckedCells.push(nFour);
-		}
-		
-		//C. if has unvisited neighbors,
-			if(currentCell.hasBeenVisited()){
-			//C1. select one at random.
+			if(nOne.hasBeenVisited())
+			{
+				
+			}
+			if(nTwo.hasBeenVisited() == false)
+			{
+				
+			}
+			if(nThree.hasBeenVisited() == false)
+			{
 			
+			}
+			if(nFour.hasBeenVisited() == false)
+			{
+				
+			}
+		
+		//C. if has unvisited neighbors, 
+		randomcell = randGen.nextInt(4);
+		if(currentCell.hasBeenVisited()){
+			//C1. select one at random.
 			//C2. push it to the stack
-				uncheckedCells.push(c);
 			//C3. remove the wall between the two cells
-				currentCell.setEastWall(false);
-			//C4. make the new cell the current cell and mark it as visited
-				currentCell.setBeenVisited(true);
-				c.setBeenVisited(true);
+			if(randomcell == 1)
+			{
+				uncheckedCells.push(nOne);
+				nOne.setNorthWall(false);
+				nOne.equals(currentCell);
+				nOne.setBeenVisited(true);
+			}
+			if(randomcell == 2)
+					{
+				uncheckedCells.push(nTwo);
+				nTwo.setSouthWall(false);
+				nOne.equals(currentCell);
+				nOne.setBeenVisited(true);
+					}
+			if(randomcell == 3)
+			{
+				uncheckedCells.push(nThree);
+				nThree.setEastWall(false);
+				nOne.equals(currentCell);
+				nOne.setBeenVisited(true);
+			}
+			if(randomcell == 4)
+			{
+				uncheckedCells.push(nFour);
+				nFour.setWestWall(false);
+				nFour.equals(currentCell);
+				nFour.setBeenVisited(true);
+			}
+		}
+
+				
+			
+				
+			
+			
 			}
 			
 		//D. if all neighbors are visited
+		if(nOne.hasBeenVisited() && nOne.hasBeenVisited() && nOne.hasBeenVisited() &&  nOne.hasBeenVisited())
+		{
+			
+		
+		
 		
 			//D1. if the stack is not empty
-			
+			if(uncheckedCells.isEmpty() == false)
 				// D1a. pop a cell from the stack
-		
+			{
+				Cell c = uncheckedCells.pop();
+			
 				// D1b. make that the current cell
-				
+			c.equals(currentCell);}}
+			
 			
 		
 	}
+	
 
 	//7. Complete the remove walls method.
 	//   This method will check if c1 and c2 are adjacent.
@@ -98,10 +140,23 @@ public class MazeMaker{
 		{
 			if(Math.abs(oneY-twoY) == 1)
 			{
-				if(Math.abs(oneX-twoX) + Math.abs(oneY-twoY) == 1 )
+				if(oneX+twoX == -1 )
 				{
-					c1.set
+					c1.setWestWall(false);
 				}
+				if(oneX+twoX == 1)
+				{
+					c1.setEastWall(false);
+				}
+				if(oneY+twoY == -1 )
+				{
+					c1.setSouthWall(false);
+				}
+				if(oneY+twoY == 1)
+				{
+					c1.setNorthWall(false);
+				}
+				
 			}
 		}
 		

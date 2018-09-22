@@ -11,9 +11,13 @@ public class MazeMaker{
 	private static int height;
 	private static int randomcell;
 	private static Maze maze;
-	
+	private static Cell nOne;
+	private static Cell nTwo;
+	private static Cell nThree;
+	private static Cell nFour;
+	private static Cell c;
 	private static Random randGen = new Random();
-	
+	private static Cell currentCell;
 	private static Stack<Cell> uncheckedCells = new Stack<Cell>();
 	
 	
@@ -34,16 +38,16 @@ public class MazeMaker{
 	}
 
 	//6. Complete the selectNextPathMethod
-	private static void selectNextPath(Cell currentCell) {
+	private static void selectNextPath(Cell start) {
 		//A. mark cell as visited
 		currentCell.setBeenVisited(true);
 		//B. check for unvisited neighbors using the cell
 		int x = currentCell.getX();
 		int y = currentCell.getY();
-		Cell nOne = new Cell(x,y-1);
-		Cell nTwo = new Cell(x,y+1);
-		Cell nThree = new Cell(x-1,y);
-		Cell nFour = new Cell(x+1,y);
+		nOne = new Cell(x,y-1);
+		 nTwo = new Cell(x,y+1);
+		 nThree = new Cell(x-1,y);
+		 nFour = new Cell(x+1,y);
 		int gate = 1;
 		if(gate == 1)
 		{
@@ -81,15 +85,15 @@ public class MazeMaker{
 					{
 				uncheckedCells.push(nTwo);
 				nTwo.setSouthWall(false);
-				nOne.equals(currentCell);
-				nOne.setBeenVisited(true);
+				nTwo.equals(currentCell);
+				nTwo.setBeenVisited(true);
 					}
 			if(randomcell == 3)
 			{
 				uncheckedCells.push(nThree);
 				nThree.setEastWall(false);
-				nOne.equals(currentCell);
-				nOne.setBeenVisited(true);
+				nThree.equals(currentCell);
+				nThree.setBeenVisited(true);
 			}
 			if(randomcell == 4)
 			{
@@ -167,6 +171,34 @@ public class MazeMaker{
 	//   Any unvisited neighbor of the passed in cell gets added
 	//   to the ArrayList
 	private static ArrayList<Cell> getUnvisitedNeighbors(Cell c) {
-		return null;
+		ArrayList<Cell> getUnvisitedNeighbors = new ArrayList<Cell>();
+		if(nOne.hasBeenVisited() == false) 
+		{	getUnvisitedNeighbors.add(nOne);
+		}
+		
+			if(nTwo.hasBeenVisited() == false) 
+			{
+				getUnvisitedNeighbors.add(nTwo);
+			}
+				if(nThree.hasBeenVisited() == false) 
+					{ getUnvisitedNeighbors.add(nThree);
+					}
+					if(nFour.hasBeenVisited() == false) 
+					{	getUnvisitedNeighbors.add(nFour);
+					}
+					return null;
+				
+			
+			
+			
+			
+		
+		
+		
+			
+		
 	}
+	
+
 }
+
